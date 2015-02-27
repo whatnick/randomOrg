@@ -2,12 +2,13 @@
 
 import urllib
 import urllib2
+import urlparse
 import os.path
 import numpy as np
 
 
 ### CONFIG ###
-RANDOM_URL = 'http://www.random.org'
+RANDOM_URL = 'https://www.random.org'
 ### END CONFIG ###
 
 
@@ -153,7 +154,7 @@ def quota(ip=None):
 
 def get_http(base_url, function, opts):
     """HTTP request generator."""
-    url = (os.path.join(base_url, function) + '/?' +   
+    url = (urlparse.urljoin(base_url, function) + '/?' +   
                  urllib.urlencode(opts))
     data = urllib2.urlopen(url)
     
